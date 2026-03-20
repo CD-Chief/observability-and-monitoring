@@ -29,6 +29,16 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=CHANGE_ME_STRONG
     restart: unless-stopped
 
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
 volumes:
   prometheus_data:
   grafana_data:
